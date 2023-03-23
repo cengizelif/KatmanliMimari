@@ -26,6 +26,11 @@ namespace WindowsFormUI
            cmb_kategoriler.DisplayMember = "KategoriAdi";
            cmb_kategoriler.ValueMember = "KategoriID";
            cmb_kategoriler.DataSource = Kategoriler.Listele();
+
+           cmb_Tedarikciler.DataSource=Tedarikciler.Listele();
+           cmb_Tedarikciler.DisplayMember = "SirketAdi";
+           cmb_Tedarikciler.ValueMember = "TedarikciId";
+
         }
 
         private void btn_Ekle_Click(object sender, EventArgs e)
@@ -34,6 +39,8 @@ namespace WindowsFormUI
             u.UrunAdi = txt_urunad.Text;
             u.BirimFiyati = nud_fiyat.Value;
             u.HedefStokDuzeyi =(short)nud_stok.Value;
+            u.KategoriID =(int)cmb_kategoriler.SelectedValue;
+            u.TedarikciID =(int)cmb_Tedarikciler.SelectedValue;
 
             bool sonuc=Urunler.Ekle(u);
             if(sonuc)
@@ -51,6 +58,19 @@ namespace WindowsFormUI
         {
             KategoriForm kf = new KategoriForm();
             kf.ShowDialog();
+        }
+
+        private void silToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           if(Urunler.Sil((int)dgv_urunler.CurrentRow.Cells["UrunID"].Value))
+            {
+                MessageBox.Show("Kayıt silindi");
+                dgv_urunler.DataSource= Urunler.Listele();  
+            }
+           else
+            {
+                MessageBox.Show("Kayıt silinirken hata oluştu");
+            }
         }
     }
 }

@@ -46,6 +46,7 @@
     <Compile Include="Entities\Urun.cs" />
     <Compile Include="Kategoriler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tedarikciler.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="Urunler.cs" />
   </ItemGroup>

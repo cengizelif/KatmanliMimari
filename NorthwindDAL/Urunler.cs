@@ -27,9 +27,20 @@ namespace NorthwindDAL
             komut.Parameters.AddWithValue("@urunAdi",urn.UrunAdi);
             komut.Parameters.AddWithValue("@fiyat", urn.BirimFiyati);
             komut.Parameters.AddWithValue("@stok", urn.HedefStokDuzeyi);
-
+            komut.Parameters.AddWithValue("@katId", urn.KategoriID);
+            komut.Parameters.AddWithValue("@tedId", urn.TedarikciID);
             return Tools.ExecuteNonQuery(komut);
       
+        }
+
+        public static bool Sil(int id)
+        {
+            SqlCommand komut = new SqlCommand("UrunSil", Tools.Baglanti);
+            komut.CommandType = CommandType.StoredProcedure;
+            komut.Parameters.AddWithValue("@urunId",id);
+    
+            return Tools.ExecuteNonQuery(komut);
+
         }
     }
 }
